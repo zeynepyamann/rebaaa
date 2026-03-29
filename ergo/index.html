@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REBA Ergonomi Değerlendirme Aracı</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Inter', sans-serif; background: #0f172a; }
+  .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+  .step-card { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+  .angle-input::-webkit-inner-spin-button { opacity: 0.5; }
+  .progress-bar { transition: width 0.5s ease; }
+  .fade-in { animation: fadeIn 0.5s ease forwards; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+  .risk-low { background: linear-gradient(135deg, #064e3b, #065f46); border-color: #10b981; }
+  .risk-medium { background: linear-gradient(135deg, #78350f, #92400e); border-color: #f59e0b; }
+  .risk-high { background: linear-gradient(135deg, #7f1d1d, #991b1b); border-color: #ef4444; }
+  .risk-very-high { background: linear-gradient(135deg, #581c87, #6b21a8); border-color: #a855f7; }
+  .btn-primary { background: linear-gradient(135deg, #3b82f6, #6366f1); transition: all 0.2s; }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 25px rgba(99,102,241,0.4); }
+  .step-dot { transition: all 0.3s; }
+  .glow { box-shadow: 0 0 20px rgba(99,102,241,0.3); }
+</style>
+</head>
+<body class="min-h-screen text-white">
+
+<!-- Header -->
+<header class="border-b border-white/10 bg-slate-900/80 sticky top-0 z-50 backdrop-blur">
+  <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-lg font-bold">R</div>
+      <div>
+        <h1 class="text-lg font-bold text-white">REBA Değerlendirici</h1>
+        <p class="text-xs text-slate-400">Rapid Entire Body Assessment</p>
+      </div>
+    </div>
+    <div class="text-xs text-slate-400 hidden sm:block">Endüstriyel Ergonomi Aracı</div>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-6 py-10">
+
+  <!-- Progress Bar -->
+  <div id="progressSection" class="mb-10">
+    <div class="flex justify-between items-center mb-3">
+      <span class="text-sm font-medium text-slate-300" id="stepLabel">Adım 1 / 7</span>
+      <span class="text-sm text-slate-400" id="stepName">Gövde Değerlendirmesi</span>
+    </div>
+    <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+      <div id="progressBar" class="progress-bar h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full" style="width:14%"></div>
+    </div>
+    <div class="flex justify-between mt-3">
+      <div class="flex gap-2" id="stepDots"></div>
+    </div>
+  </div>
+
+  <!-- Step Cards -->
+  <div id="stepContainer"></div>
+
+  <!-- Result Section -->
+  <div id="resultSection" class="hidden fade-in"></div>
+
+</main>
+
+<script src="reba.js"></script>
+</body>
+</html>
